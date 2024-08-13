@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game - Result</title>
+</head>
+<body>
+    <h1>{{ winner }}</h1>
+    <p>Your Final Score: {{ user_score }}</p>
+    <p>Computer's Final Score: {{ computer_score }}</p>
+    <a href="{{ url_for('start') }}">Play Again</a>
+</body>
+</html>
