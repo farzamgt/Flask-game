@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors Game - Result</title>
-</head>
-<body>
-    <h1>{{ winner }}</h1>
-    <p>Your Final Score: {{ user_score }}</p>
-    <p>Computer's Final Score: {{ computer_score }}</p>
+{% extends "base.html" %}
+
+{% block title %}Game Result{% endblock %}
+
+{% block content %}
+<h1>{{ winner }}</h1>
+<p>Your Final Score: {{ user_score }}</p>
+<p>Computer's Final Score: {{ computer_score }}</p>
+
+{% if user_score < 5 and computer_score < 5 %}
+    <p>Congratulations! You are the overall winner!</p>
+    <a href="{{ url_for('game') }}">Play Again</a>
+{% else %}
+    <p>Computer is the overall winner!</p>
     <a href="{{ url_for('start') }}">Play Again</a>
-</body>
-</html>
+{% endif %}
+{% endblock %}

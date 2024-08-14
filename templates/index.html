@@ -1,25 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors Game</title>
-</head>
-<body>
-    <h1>Rock, Paper, Scissors Game</h1>
-    {% if result %}
-        <p>{{ result }}</p>
-    {% endif %}
-    <p>Your Score: {{ user_score }}</p>
-    <p>Computer's Score: {{ computer_score }}</p>
-    <form method="post">
-        <label for="choice">Choose: </label>
-        <select name="choice" id="choice">
-            <option value="rock">Rock</option>
-            <option value="paper">Paper</option>
-            <option value="scissors">Scissors</option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Play Game{% endblock %}
+
+{% block content %}
+{% if result %}
+    <p>{{ result }}</p>
+{% endif %}
+<p>Your Score: {{ user_score }}</p>
+<p>Computer's Score: {{ computer_score }}</p>
+
+<h2>Previous Rounds</h2>
+<table border="1">
+    <tr>
+        <th>Round</th>
+        <th>Your Choice</th>
+        <th>Computer's Choice</th>
+        <th>Result</th>
+    </tr>
+    {% for round in rounds %}
+    <tr>
+        <td>{{ round.round }}</td>
+        <td>{{ round.user_choice }}</td>
+        <td>{{ round.computer_choice }}</td>
+        <td>{{ round.result }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<form method="post">
+    <button type="submit" name="choice" value="rock">Rock</button>
+    <button type="submit" name="choice" value="paper">Paper</button>
+    <button type="submit" name="choice" value="scissors">Scissors</button>
+</form>
+
+<form method="post">
+    <button type="submit" name="choice" value="q">Quit</button>
+</form>
+{% endblock %}
