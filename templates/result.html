@@ -3,15 +3,26 @@
 {% block title %}Game Result{% endblock %}
 
 {% block content %}
-<h1>{{ winner }}</h1>
-<p>Your Final Score: {{ user_score }}</p>
-<p>Computer's Final Score: {{ computer_score }}</p>
-
-{% if user_score < 5 and computer_score < 5 %}
-    <p>Congratulations! You are the overall winner!</p>
-    <a href="{{ url_for('game') }}">Play Again</a>
-{% else %}
-    <p>Computer is the overall winner!</p>
-    <a href="{{ url_for('start') }}">Play Again</a>
-{% endif %}
+<div class="container">
+    <div class="result">
+        <h1 class="greeting-title">{{ winner }}</h1>
+        <p class="greeting-text">Your Final Score: <span class="score-user">{{ user_score }}</span></p>
+        <p class="greeting-text">Computer's Final Score: <span class="score-comp">{{ computer_score }}</span></p>
+    </div>
+    <div class="continue">
+        {% if user_score < 3 and computer_score < 3 %}
+            <p class="continue-p">Would you like to continue the game?</p>
+            <a class="continue-link" href="{{ url_for('game') }}">Continue...</a>
+        {% else %}
+            <p class="continue-p">Would you like to start a new game?</p>
+            <a class="continue-link" href="{{ url_for('start') }}">New game!</a>
+        {% endif %}
+    </div>
+    <div class="ask">
+        <p class="continue-p">Click here to exit.</p>
+        <form class="ask-form" method="post">
+            <button type="submit" name="choice" value="q">Quit</button>
+        </form>
+    </div>
+</div>
 {% endblock %}

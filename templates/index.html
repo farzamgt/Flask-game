@@ -3,37 +3,68 @@
 {% block title %}Play Game{% endblock %}
 
 {% block content %}
-{% if result %}
-    <p>{{ result }}</p>
-{% endif %}
-<p>Your Score: {{ user_score }}</p>
-<p>Computer's Score: {{ computer_score }}</p>
-
-<h2>Previous Rounds</h2>
-<table border="1">
-    <tr>
-        <th>Round</th>
-        <th>Your Choice</th>
-        <th>Computer's Choice</th>
-        <th>Result</th>
-    </tr>
-    {% for round in rounds %}
-    <tr>
-        <td>{{ round.round }}</td>
-        <td>{{ round.user_choice }}</td>
-        <td>{{ round.computer_choice }}</td>
-        <td>{{ round.result }}</td>
-    </tr>
-    {% endfor %}
-</table>
-
-<form method="post">
-    <button type="submit" name="choice" value="rock">Rock</button>
-    <button type="submit" name="choice" value="paper">Paper</button>
-    <button type="submit" name="choice" value="scissors">Scissors</button>
-</form>
-
-<form method="post">
-    <button type="submit" name="choice" value="q">Quit</button>
-</form>
+<div class="container">    
+    <div class="result-info">
+        <div class="head-box-l">
+            <div class="result-info-score">
+                <p class="result-info-p">Your Score: <span class="score-user">{{ user_score }}</span></p>
+                <p class="result-info-p">Computer's Score: <span class="score-comp">{{ computer_score }}</span></p>
+            </div>
+            <div class="winner">
+                {% if result %}
+                <p class="winner-text">{{ result }}</p>
+                {% endif %}
+            </div>
+        </div>  
+        <div class="head-box-r">
+            <div class="choice-q">
+                <form method="post">
+                    <button type="submit" name="choice" value="q">Exit</button>
+                </form>
+            </div>
+        </div>      
+    </div>
+    <div class="game">
+        <div class="rounds">
+            <div class="round-title">
+                <h2>Current Set Results</h2>
+            </div>
+            <div class="round-table">
+                <table>
+                    <tr>
+                        <th>Round</th>
+                        <th>Your Choice</th>
+                        <th> - </th>
+                        <th>Computer's Choice</th>
+                        <th>Result</th>
+                    </tr>
+                    {% for round in rounds %}
+                    <tr>
+                        <td>{{ round.round }}</td>
+                        <td class="user-choice-td">{{ round.user_choice }}</td>
+                        <td> VS </td>
+                        <td class="comp-choice-td">{{ round.computer_choice }}</td>
+                        <td>{{ round.result }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="choice">
+            <div class="choice-box">
+                <form method="post">
+                    <button class="choice-btn" type="submit" name="choice" value="rock">
+                        <img class="choice-img" src="{{url_for('static', filename='images/rock.png')}}" alt="Rock" width="100" height="100">
+                    </button>
+                    <button class="choice-btn" type="submit" name="choice" value="paper">
+                        <img class="choice-img" src="{{url_for('static', filename='images/paper.png')}}" alt="Paper" width="100" height="100">
+                    </button>
+                    <button class="choice-btn" type="submit" name="choice" value="scissors">
+                        <img class="choice-img" src="{{url_for('static', filename='images/scissors.png')}}" alt="Scissors" width="100" height="100">
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>    
+</div>
 {% endblock %}

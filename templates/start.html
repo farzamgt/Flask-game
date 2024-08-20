@@ -3,8 +3,17 @@
 {% block title %}Start Game{% endblock %}
 
 {% block content %}
-<p>Do you want to play?</p>
-<form method="post">
-    <button type="submit">Start Game</button>
-</form>
+<div class="container">
+    <div class="greeting">
+        <h1 class="greeting-title">Welcome to the Rock, Paper, Scissors Game!</h1>
+        
+        <p class="greeting-text">Get ready for an exciting challenge! This game consists of 3 sets, and each set includes 3 intense rounds. You'll be playing against the computer, and the goal is to be the first to reach 5 points. If you achieve 3 points first, you’ll be declared the ultimate winner. Let the fun begin!</p>
+    </div>
+    <div class="ask">
+        <p class="ask-p">Do you want to play?</p>
+        <form class="ask-form" method="post">
+            <button class="submit" type="submit">Start Game</button>
+        </form>
+    </div>
+</div>
 {% endblock %}
