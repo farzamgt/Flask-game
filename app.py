@@ -30,11 +30,8 @@ def start():
 def game():
     global user_score, computer_score, counter, final_computer_score, final_user_score, rounds
 
-    result = 'No results yet!'
-    user_choice = None
-    computer_choice = None
-    if counter < 3:
-        if request.method == 'POST':
+    if request.method == 'POST':
+        if counter < 3:
             user_choice = request.form.get('choice').lower()
 
             if user_choice == "q":
@@ -54,32 +51,32 @@ def game():
             elif user_choice == "rock" and computer_choice == "scissors":
                 result = "You win!"
                 user_score += 1
-                counter += 1
             elif user_choice == "paper" and computer_choice == "rock":
                 result = "You win!"
                 user_score += 1
-                counter += 1
             elif user_choice == "scissors" and computer_choice == "paper":
                 result = "You win!"
                 user_score += 1
-                counter += 1
             else:
                 result = "Computer wins!"
                 computer_score += 1
-                counter += 1
 
-            rounds.append({'round': counter + 1, 'user_choice': user_choice, 'computer_choice': computer_choice, 'result': result})
-            
+            counter += 1
 
-        return render_template('index.html', result=result, user_score=user_score, computer_score=computer_score, rounds=rounds)
-    else:
-        winner = "It's a tie!"
+            rounds.append({'round': counter, 'user_choice': user_choice, 'computer_choice': computer_choice, 'result': result})
+
+            if counter == 3:
+                return render_template('index.html', result=result, user_score=user_score, computer_score=computer_score, rounds=rounds)
+    
+    if counter == 3:
         if user_score > computer_score:
             final_user_score += 1
-            winner = "You won the game!"
+            winner = "You won this set!"
         elif computer_score > user_score:
             final_computer_score += 1
-            winner = "Computer won the game!"
+            winner = "Computer won this set!" 
+        else:
+            winner = "It's a tie for this set!"
 
         if final_user_score >= 3:
             winner = "Congratulations! You are the overall winner!"
@@ -92,6 +89,10 @@ def game():
         rounds = []        
 
         return render_template('result.html', winner=winner, user_score=final_user_score, computer_score=final_computer_score)
+    
+    result = 'No results yet!' if not rounds else rounds[-1]['result']
+    return render_template('index.html', result=result, user_score=user_score, computer_score=computer_score, rounds=rounds)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
