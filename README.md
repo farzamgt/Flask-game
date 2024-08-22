@@ -22,6 +22,10 @@ HTML & CSS:
 
 `git clone https://github.com/farzamgt/Flask-game.git`
 
+- Navigate to the project directory:
+
+`cd flask-game`
+
 - Install the required dependencies:
 
 `pip install -r requirements.txt`
