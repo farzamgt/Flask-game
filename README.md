@@ -20,7 +20,7 @@ HTML & CSS:
 
 - Clone the repository:
 
-`https://github.com/farzamgt/Flask-game.git`
+`git clone https://github.com/farzamgt/Flask-game.git`
 
 - Install the required dependencies:
 
