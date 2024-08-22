@@ -24,7 +24,7 @@ HTML & CSS:
 
 - Navigate to the project directory:
 
-`cd flask-game`
+`cd Flask-game`
 
 - Install the required dependencies:
 
